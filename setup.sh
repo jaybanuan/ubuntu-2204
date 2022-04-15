@@ -2,7 +2,7 @@
 
 # update packages
 apt-get update
-apt-get dist-upgrade
+apt-get dist-upgrade -y
 
 # init variables
 PKG=""
