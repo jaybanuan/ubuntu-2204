@@ -1,5 +1,10 @@
 #!/bin/bash -x
 
+# visudo -f /etc/sudoers.d/username
+#
+# jaybanuan ALL=(ALL:ALL) NOPASSWD:ALL
+
+
 ##############################################################################
 # update packages
 
