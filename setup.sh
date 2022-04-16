@@ -46,9 +46,11 @@ sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 # install Kubernetes
 
 # install kubectl
+#   see https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
 sudo snap install kubectl --classic
 
 # install MiniKube
+#   see https://minikube.sigs.k8s.io/docs/start/
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 sudo dpkg -i minikube_latest_amd64.deb
 
@@ -85,3 +87,6 @@ sudo snap install vlc
 
 # install GIMP
 sudo snap install gimp
+
+# install Slack
+sudo snap install slack
