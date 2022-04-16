@@ -89,6 +89,9 @@ EOS
 curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
 
+# install Brasero
+sudo apt-get install -y brasero
+
 # install VLC
 sudo snap install vlc
 
@@ -97,3 +100,6 @@ sudo snap install gimp
 
 # install Slack
 sudo snap install slack
+
+# install LibreOffice
+sudo snap install libreoffice
