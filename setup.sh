@@ -2,7 +2,7 @@
 
 # visudo -f /etc/sudoers.d/username
 #
-# jaybanuan ALL=(ALL:ALL) NOPASSWD:ALL
+# username ALL=(ALL:ALL) NOPASSWD:ALL
 
 
 ##############################################################################
