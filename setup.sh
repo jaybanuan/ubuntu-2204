@@ -83,7 +83,17 @@ EOS
 
 
 ##############################################################################
-# Desktop
+# Desktop settings
+
+# Settings > Power > Power Saving Options > Screen Blank == Never
+gsettings set org.gnome.desktop.session idle-delay 0
+
+# favorites on dock
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'slack_slack.desktop', 'meld.desktop', 'vlc.desktop', 'org.gnome.gedit.desktop']"
+
+
+##############################################################################
+# install desktop apps
 
 # install Google Chrome
 curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
