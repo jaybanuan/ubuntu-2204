@@ -43,3 +43,19 @@ dpkg -i minikube_latest_amd64.deb
 
 # install VLC
 snap install vlc
+
+
+
+
+get_git_info_for_ps1() {
+    local GIT_INFO=$(__git_ps1 "%s")
+    if [ -n "$GIT_INFO" ]; then
+        local GIT_USER_NAME=$(git config --get user.name)
+        if [ -z "$GIT_USER_NAME" ]; then
+            GIT_USER_NAME="NO-USER-NAME"
+        fi
+        echo " ($GIT_USER_NAME@$GIT_INFO)"
+    fi
+}
+
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[36m\]$(get_git_info_for_ps1)\[\033[00m\]\$ '
