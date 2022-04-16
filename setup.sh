@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-# visudo -f /etc/sudoers.d/username
+# sudo visudo -f /etc/sudoers.d/username
 #
 # username ALL=(ALL:ALL) NOPASSWD:ALL
 
