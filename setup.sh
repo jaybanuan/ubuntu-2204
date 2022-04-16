@@ -1,8 +1,11 @@
 #!/bin/bash -xe
 
-# sudo visudo -f /etc/sudoers.d/username
-#
-# username ALL=(ALL:ALL) NOPASSWD:ALL
+##############################################################################
+# add entry to sudoers
+
+echo "$(id -un) ALL=(ALL:ALL) NOPASSWD:ALL" > "$(id -un)"
+sudo install -o root -g root -m 440 "$(id -un)" /etc/sudoers.d/
+sudo visudo --check --file=sudoers "/etc/sudoers.d/$(id -un)"
 
 
 ##############################################################################
@@ -16,6 +19,26 @@ sudo apt-get dist-upgrade -y
 # install development packages
 
 sudo apt-get install -y git make curl wget meld
+
+
+##############################################################################
+# PS1 for git
+
+cat << 'EOS' >> ~/.bashrc
+
+get_git_info_for_ps1() {
+    local GIT_INFO=$(__git_ps1 "%s")
+    if [ -n "$GIT_INFO" ]; then
+        local GIT_USER_NAME=$(git config --get user.name)
+        if [ -z "$GIT_USER_NAME" ]; then
+            GIT_USER_NAME="NO-USER-NAME"
+        fi
+        echo " ($GIT_USER_NAME@$GIT_INFO)"
+    fi
+}
+
+PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[36m\]$(get_git_info_for_ps1)\[\033[00m\]\$ '
+EOS
 
 
 ##############################################################################
@@ -63,23 +86,11 @@ sudo dpkg -i minikube_latest_amd64.deb
 
 
 ##############################################################################
-# PS1 for git
+# install KVM
 
-cat << 'EOS' >> ~/.bashrc
-
-get_git_info_for_ps1() {
-    local GIT_INFO=$(__git_ps1 "%s")
-    if [ -n "$GIT_INFO" ]; then
-        local GIT_USER_NAME=$(git config --get user.name)
-        if [ -z "$GIT_USER_NAME" ]; then
-            GIT_USER_NAME="NO-USER-NAME"
-        fi
-        echo " ($GIT_USER_NAME@$GIT_INFO)"
-    fi
-}
-
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[36m\]$(get_git_info_for_ps1)\[\033[00m\]\$ '
-EOS
+sudo apt-get install -y qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager
+sudo adduser `id -un` libvirt
+sudo adduser `id -un` kvm
 
 
 ##############################################################################
@@ -113,3 +124,9 @@ sudo snap install slack
 
 # install LibreOffice
 sudo snap install libreoffice
+
+
+##############################################################################
+# remove entry to sudoers
+
+sudo rm -f "/etc/sudoers.d/$(id -un)"
