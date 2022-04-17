@@ -5,7 +5,7 @@
 
 echo "$(id -un) ALL=(ALL:ALL) NOPASSWD:ALL" > "$(id -un)"
 sudo install -o root -g root -m 440 "$(id -un)" /etc/sudoers.d/
-sudo visudo --check --file=sudoers "/etc/sudoers.d/$(id -un)"
+sudo visudo --check --file="/etc/sudoers.d/$(id -un)"
 
 
 ##############################################################################
