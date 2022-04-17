@@ -82,7 +82,7 @@ sudo snap install kubectl --classic
 # install MiniKube
 #   see https://minikube.sigs.k8s.io/docs/start/
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
-sudo gdebi minikube_latest_amd64.deb
+sudo gdebi -n minikube_latest_amd64.deb
 
 
 ##############################################################################
@@ -108,7 +108,7 @@ gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnom
 
 # install Google Chrome
 curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo gdebi ./google-chrome-stable_current_amd64.deb
+sudo gdebi -n ./google-chrome-stable_current_amd64.deb
 
 # install Brasero
 sudo apt-get install -y brasero
