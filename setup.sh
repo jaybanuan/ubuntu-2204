@@ -100,7 +100,7 @@ sudo adduser `id -un` kvm
 gsettings set org.gnome.desktop.session idle-delay 0
 
 # favorites on dock
-gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'slack_slack.desktop', 'meld.desktop', 'vlc.desktop', 'org.gnome.gedit.desktop']"
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'slack_slack.desktop', 'virt-manager.desktop', 'meld.desktop', 'vlc.desktop', 'org.gnome.gedit.desktop']"
 
 
 ##############################################################################
