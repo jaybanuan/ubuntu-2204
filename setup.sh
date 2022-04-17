@@ -20,6 +20,8 @@ sudo apt-get dist-upgrade -y
 
 sudo apt-get install -y git make curl wget meld
 
+# install mozc explicitly until Nihongo Remix is released
+sudo apt-get install -y mozc-utils-gui
 
 ##############################################################################
 # PS1 for git
