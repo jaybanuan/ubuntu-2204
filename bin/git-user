@@ -1,0 +1,31 @@
+#!/bin/bash
+
+CONFIG_FILE=${HOME}/.git-user.yml
+ENTRY_NAME=$1
+
+if [ -z ${ENTRY_NAME} ]; then
+    echo "Entry name must be specified." >&2
+    exit 1
+fi
+
+if [ ! -f ${CONFIG_FILE} ]; then
+    echo "Config file ${CONFIG_FILE} not found." >&2
+    exit 1
+fi
+
+yq -re ".${ENTRY_NAME}" ${CONFIG_FILE} > /dev/null || {
+    echo "The entry ${ENTRY_NAME} not found." >&2
+    exit 1
+}
+
+GIT_USER_NAME="$(yq -re ".${ENTRY_NAME}.name" ${CONFIG_FILE})" || {
+    GIT_USER_NAME=${ENTRY_NAME}
+}
+
+GIT_USER_EMAIL="$(yq -re ".${ENTRY_NAME}.email" ${CONFIG_FILE})" || {
+    echo "The key 'email' not found in ${ENTRY_NAME}." >&2
+    exit 1
+}
+
+git config --local user.name ${GIT_USER_NAME}
+git config --local user.email ${GIT_USER_EMAIL}
