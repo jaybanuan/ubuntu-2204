@@ -30,3 +30,5 @@ GIT_USER_EMAIL="$(yq -re ".${ENTRY_NAME}.email" ${CONFIG_FILE})" || {
 
 git config --local user.name "${GIT_USER_NAME}"
 git config --local user.email "${GIT_USER_EMAIL}"
+git config --local credential.namespace "${GIT_USER_NAME}"
+git config --local credential.credentialStore secretservice
