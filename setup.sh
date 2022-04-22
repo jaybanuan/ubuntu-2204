@@ -84,6 +84,10 @@ sudo snap install kubectl --classic
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
 sudo gdebi -n minikube_latest_amd64.deb
 
+# install helm
+#   see https://helm.sh/docs/intro/install/
+sudo snap install heml --classic
+
 
 ##############################################################################
 # install KVM
