@@ -74,7 +74,7 @@ sudo usermod -aG docker $USER
 
 ##############################################################################
 # install Docker Compose
-#   see 
+#   see https://docs.docker.com/compose/cli-command/#install-on-linux
 
 CLI_PLUGINS_DIR=/usr/local/lib/docker/cli-plugins
 sudo mkdir -p $CLI_PLUGINS_DIR
