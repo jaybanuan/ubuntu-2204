@@ -58,7 +58,7 @@ sudo apt-get install -y code
 
 
 ##############################################################################
-# install docker
+# install Docker
 #   see https://docs.docker.com/engine/install/ubuntu/
 
 sudo apt-get install -y ca-certificates curl gnupg lsb-release
@@ -70,6 +70,17 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io
 
 sudo usermod -aG docker $USER
+
+
+##############################################################################
+# install Docker Compose
+#   see 
+
+CLI_PLUGINS_DIR=/usr/local/lib/docker/cli-plugins
+sudo mkdir -p $CLI_PLUGINS_DIR
+sudo curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o $CLI_PLUGINS_DIR/docker-compose
+
+sudo chmod +x $CLI_PLUGINS_DIR/docker-compose
 
 
 ##############################################################################
