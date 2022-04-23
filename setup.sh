@@ -42,6 +42,15 @@ EOS
 
 
 ##############################################################################
+# install git-credential-manager-core
+#   see https://github.com/GitCredentialManager/git-credential-manager
+
+curl -LO https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.696/gcmcore-linux_amd64.2.0.696.deb
+sudo gdebi gcmcore-linux_amd64.2.0.696.deb
+git-credential-manager-core configure
+
+
+##############################################################################
 # install Visual Studio Code
 #   see https://code.visualstudio.com/docs/setup/linux
 
