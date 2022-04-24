@@ -106,7 +106,7 @@ sudo gdebi -n minikube_latest_amd64.deb
 
 # install helm
 #   see https://helm.sh/docs/intro/install/
-sudo snap install heml --classic
+sudo snap install helm --classic
 
 
 ##############################################################################
