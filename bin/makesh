@@ -1,0 +1,4 @@
+#!/bin/bash
+
+touch $1
+chmod u+x $1
