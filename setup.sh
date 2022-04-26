@@ -18,7 +18,7 @@ sudo apt-get dist-upgrade -y
 ##############################################################################
 # install general packages
 
-sudo apt-get install -y git make curl wget tree meld gdebi mozc-utils-gui
+sudo apt-get install -y git make curl wget tree gettext-base meld gdebi mozc-utils-gui
 
 
 ##############################################################################
