@@ -1,4 +1,16 @@
 #!/bin/bash
 
-touch $1
-chmod u+x $1
+FILE=$1
+
+test -n "${FILE}" || {
+    echo "Shell script file name must be specified." >&2
+    exit 1
+}
+
+test ! -f "${FILE}" || {
+    echo "The file ${FILE} already exists." >&2
+    exit 1
+}
+
+echo "#!/bin/bash" > ${FILE}
+chmod u+x ${FILE}
