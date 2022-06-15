@@ -51,6 +51,12 @@ git-credential-manager-core configure
 
 
 ##############################################################################
+# install Python
+
+sudo apt-get install -y python3 python3-pip python3-venv
+
+
+##############################################################################
 # install Visual Studio Code
 #   see https://code.visualstudio.com/docs/setup/linux
 
