@@ -53,7 +53,7 @@ git-credential-manager-core configure
 ##############################################################################
 # install Python
 
-sudo apt-get install -y python3 python3-pip python3-venv
+sudo apt-get install -y python3 python3-pip python3-venv pipenv
 
 
 ##############################################################################
