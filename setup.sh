@@ -46,7 +46,7 @@ EOS
 #   see https://github.com/GitCredentialManager/git-credential-manager
 
 GCM_VERSION=2.0.785
-curl -LO https://github.com/GitCredentialManager/git-credential-manager/releases/download/v{GCM_VERSION}/gcmcore-linux_amd64.${GCM_VERSION}.deb
+curl -LO https://github.com/GitCredentialManager/git-credential-manager/releases/download/v${GCM_VERSION}/gcmcore-linux_amd64.${GCM_VERSION}.deb
 sudo gdebi -n gcmcore-linux_amd64.${GCM_VERSION}.deb
 git-credential-manager-core configure
 
