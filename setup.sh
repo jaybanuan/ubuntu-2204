@@ -45,8 +45,9 @@ EOS
 # install git-credential-manager-core
 #   see https://github.com/GitCredentialManager/git-credential-manager
 
-curl -LO https://github.com/GitCredentialManager/git-credential-manager/releases/download/v2.0.696/gcmcore-linux_amd64.2.0.696.deb
-sudo gdebi -n gcmcore-linux_amd64.2.0.696.deb
+GCM_VERSION=2.0.785
+curl -LO https://github.com/GitCredentialManager/git-credential-manager/releases/download/v{GCM_VERSION}/gcmcore-linux_amd64.${GCM_VERSION}.deb
+sudo gdebi -n gcmcore-linux_amd64.${GCM_VERSION}.deb
 git-credential-manager-core configure
 
 
@@ -78,24 +79,13 @@ sudo apt-get install -y code
 
 sudo apt-get install -y ca-certificates curl gnupg lsb-release
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 sudo usermod -aG docker $USER
-
-
-##############################################################################
-# install Docker Compose
-#   see https://docs.docker.com/compose/cli-command/#install-on-linux
-
-CLI_PLUGINS_DIR=/usr/local/lib/docker/cli-plugins
-sudo mkdir -p $CLI_PLUGINS_DIR
-sudo curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o $CLI_PLUGINS_DIR/docker-compose
-
-sudo chmod +x $CLI_PLUGINS_DIR/docker-compose
 
 
 ##############################################################################
