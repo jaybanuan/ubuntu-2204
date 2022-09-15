@@ -16,6 +16,12 @@ sudo apt-get dist-upgrade -y
 
 
 ##############################################################################
+# create directory ~/bin
+
+mkdir ~/bin
+
+
+##############################################################################
 # install general packages
 
 sudo apt-get install -y git make curl wget tree gettext-base meld gdebi mozc-utils-gui
@@ -38,6 +44,63 @@ get_git_info_for_ps1() {
 }
 
 PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[36m\]$(get_git_info_for_ps1)\[\033[00m\]\$ '
+EOS
+
+
+##############################################################################
+# git-user script
+
+cat << 'EOS' >> ~/bin/git-user
+#!/bin/bash -e
+
+CONFIG_FILE=${HOME}/.git-user.yml
+ENTRY_NAME=$1
+
+
+test -n "${ENTRY_NAME}" || {
+    echo "Entry name must be specified." >&2
+    exit 1
+}
+
+test -f "${CONFIG_FILE}" || {
+    echo "Config file ${CONFIG_FILE} not found." >&2
+    exit 1
+}
+
+yq -re ".${ENTRY_NAME}" "${CONFIG_FILE}" > /dev/null || {
+    echo "The entry ${ENTRY_NAME} not found." >&2
+    exit 1
+}
+
+GIT_USER_NAME="$(yq -re ".${ENTRY_NAME}.name" ${CONFIG_FILE})" || {
+    GIT_USER_NAME=${ENTRY_NAME}
+}
+
+GIT_USER_EMAIL="$(yq -re ".${ENTRY_NAME}.email" ${CONFIG_FILE})" || {
+    echo "The key 'email' not found in ${ENTRY_NAME}." >&2
+    exit 1
+}
+
+git config --local user.name "${GIT_USER_NAME}"
+git config --local user.email "${GIT_USER_EMAIL}"
+git config --local credential.namespace "${GIT_USER_NAME}"
+git config --local credential.credentialStore secretservice
+EOS
+
+chmod a+x ~/bin/git-user
+
+
+##############################################################################
+# git-user config file template
+
+cat << 'EOS' >> ~/.git-user.yml
+jaybanuan:
+    name: jaybanuan
+    email: 
+
+foo:
+    name: foo
+    email: 
 EOS
 
 
