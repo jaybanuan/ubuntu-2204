@@ -24,7 +24,7 @@ mkdir ~/bin
 ##############################################################################
 # install general packages
 
-sudo apt-get install -y git make curl wget tree gettext-base meld gdebi mozc-utils-gui
+sudo apt-get install -y git make curl jq wget tree gettext-base meld gdebi mozc-utils-gui
 
 
 ##############################################################################
