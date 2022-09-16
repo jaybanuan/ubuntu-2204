@@ -16,9 +16,10 @@ sudo apt-get dist-upgrade -y
 
 
 ##############################################################################
-# create directory ~/bin
+# create user local "bin" directory
 
 mkdir ~/bin
+mkdir ~/.local/bin
 
 
 ##############################################################################
