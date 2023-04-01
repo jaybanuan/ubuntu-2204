@@ -109,7 +109,7 @@ EOS
 # install git-credential-manager-core
 #   see https://github.com/GitCredentialManager/git-credential-manager
 
-GCM_VERSION=2.0.785
+GCM_VERSION=2.0.935
 curl -LO https://github.com/GitCredentialManager/git-credential-manager/releases/download/v${GCM_VERSION}/gcm-linux_amd64.${GCM_VERSION}.deb
 sudo gdebi -n gcm-linux_amd64.${GCM_VERSION}.deb
 git-credential-manager-core configure
@@ -141,15 +141,15 @@ sudo apt-get install -y code
 # install Docker
 #   see https://docs.docker.com/engine/install/ubuntu/
 
-sudo apt-get install -y ca-certificates curl gnupg lsb-release
+sudo apt-get install -y ca-certificates curl gnupg
 
+sudo mkdir -m 0755 -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt-get update
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
-sudo usermod -aG docker $USER
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+# sudo usermod -aG docker $USER
 
 
 ##############################################################################
@@ -195,7 +195,7 @@ curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.de
 sudo gdebi -n ./google-chrome-stable_current_amd64.deb
 
 # install Brasero
-sudo apt-get install -y brasero
+# sudo apt-get install -y brasero
 
 # install VLC
 sudo snap install vlc
