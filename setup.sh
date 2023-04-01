@@ -198,7 +198,7 @@ sudo gdebi -n ./google-chrome-stable_current_amd64.deb
 # sudo apt-get install -y brasero
 
 # install VLC
-sudo snap install vlc
+# sudo snap install vlc
 
 # install GIMP
 sudo snap install gimp
