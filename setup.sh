@@ -107,12 +107,13 @@ EOS
 
 ##############################################################################
 # install git-credential-manager-core
-#   see https://github.com/GitCredentialManager/git-credential-manager
+#   see https://github.com/git-ecosystem/git-credential-manager
 
-GCM_VERSION=2.0.935
-curl -LO https://github.com/GitCredentialManager/git-credential-manager/releases/download/v${GCM_VERSION}/gcm-linux_amd64.${GCM_VERSION}.deb
-sudo gdebi -n gcm-linux_amd64.${GCM_VERSION}.deb
-git-credential-manager-core configure
+GCM_VERSION=2.5.0
+curl -LO https://github.com/git-ecosystem/git-credential-manager/releases/download/v${GCM_VERSION}/gcm-linux_amd64.${GCM_VERSION}.deb
+
+sudo dpkg -i gcm-linux_amd64.${GCM_VERSION}.deb
+git-credential-manager configure
 
 
 ##############################################################################
@@ -128,8 +129,8 @@ sudo apt-get install -y python3 python3-pip python3-venv pipenv
 sudo apt-get install -y wget gpg
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
 rm -f packages.microsoft.gpg
 
 sudo apt-get install -y apt-transport-https
@@ -141,15 +142,25 @@ sudo apt-get install -y code
 # install Docker
 #   see https://docs.docker.com/engine/install/ubuntu/
 
-sudo apt-get install -y ca-certificates curl gnupg
-
-sudo mkdir -m 0755 -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-echo "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
+# Add Docker's official GPG key:
 sudo apt-get update
+sudo apt-get install -y ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+# install the latest version
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-# sudo usermod -aG docker $USER
+
+# add current user to group "docker"
+sudo usermod -aG docker $USER
 
 
 ##############################################################################
@@ -162,7 +173,8 @@ sudo snap install kubectl --classic
 # install MiniKube
 #   see https://minikube.sigs.k8s.io/docs/start/
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
-sudo gdebi -n minikube_latest_amd64.deb
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+sudo dpkg -i minikube_latest_amd64.deb
 
 # install helm
 #   see https://helm.sh/docs/intro/install/
