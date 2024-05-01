@@ -29,6 +29,12 @@ sudo apt-get install -y git make curl jq wget tree gettext-base meld mozc-utils-
 
 
 ##############################################################################
+# install Python
+
+sudo apt-get install -y python3 python3-pip python3-venv pipenv pipx
+
+
+##############################################################################
 # PS1 for git
 
 cat << 'EOS' >> ~/.bashrc
@@ -92,6 +98,12 @@ chmod a+x ~/bin/git-user
 
 
 ##############################################################################
+# git-user dependencies
+
+pipx install yq
+
+
+##############################################################################
 # git-user config file template
 
 cat << 'EOS' >> ~/.git-user.yml
@@ -113,12 +125,6 @@ GCM_VERSION=2.5.0
 curl -LO https://github.com/git-ecosystem/git-credential-manager/releases/download/v${GCM_VERSION}/gcm-linux_amd64.${GCM_VERSION}.deb
 sudo dpkg -i gcm-linux_amd64.${GCM_VERSION}.deb
 git-credential-manager configure
-
-
-##############################################################################
-# install Python
-
-sudo apt-get install -y python3 python3-pip python3-venv pipenv
 
 
 ##############################################################################
@@ -194,7 +200,7 @@ sudo adduser `id -un` kvm
 gsettings set org.gnome.desktop.session idle-delay 0
 
 # favorites on dock
-gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'slack_slack.desktop', 'virt-manager.desktop', 'org.gnome.Meld.desktop', 'vlc.desktop', 'org.gnome.TextEditor.desktop']"
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'slack_slack.desktop', 'virt-manager.desktop', 'org.gnome.Meld.desktop', 'vlc_vlc.desktop', 'org.gnome.TextEditor.desktop']"
 
 
 ##############################################################################
