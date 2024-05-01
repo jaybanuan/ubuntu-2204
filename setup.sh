@@ -25,7 +25,7 @@ mkdir ~/.local/bin
 ##############################################################################
 # install general packages
 
-sudo apt-get install -y git make curl jq wget tree gettext-base meld gdebi mozc-utils-gui
+sudo apt-get install -y git make curl jq wget tree gettext-base meld mozc-utils-gui
 
 
 ##############################################################################
@@ -203,7 +203,7 @@ gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnom
 
 # install Google Chrome
 curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo gdebi -n ./google-chrome-stable_current_amd64.deb
+sudo dpkg -i ./google-chrome-stable_current_amd64.deb
 
 # install Brasero
 # sudo apt-get install -y brasero
