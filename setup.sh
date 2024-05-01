@@ -205,10 +205,10 @@ curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.de
 sudo dpkg -i ./google-chrome-stable_current_amd64.deb
 
 # install Brasero
-# sudo apt-get install -y brasero
+sudo apt-get install -y brasero
 
 # install VLC
-# sudo snap install vlc
+sudo snap install vlc
 
 # install GIMP
 sudo snap install gimp
