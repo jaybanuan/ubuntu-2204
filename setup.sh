@@ -111,7 +111,6 @@ EOS
 
 GCM_VERSION=2.5.0
 curl -LO https://github.com/git-ecosystem/git-credential-manager/releases/download/v${GCM_VERSION}/gcm-linux_amd64.${GCM_VERSION}.deb
-
 sudo dpkg -i gcm-linux_amd64.${GCM_VERSION}.deb
 git-credential-manager configure
 
