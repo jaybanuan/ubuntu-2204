@@ -121,9 +121,9 @@ EOS
 # install git-credential-manager-core
 #   see https://github.com/git-ecosystem/git-credential-manager
 
-GCM_VERSION=2.5.0
-curl -LO https://github.com/git-ecosystem/git-credential-manager/releases/download/v${GCM_VERSION}/gcm-linux_amd64.${GCM_VERSION}.deb
-sudo dpkg -i gcm-linux_amd64.${GCM_VERSION}.deb
+GCM_VERSION=2.7.3
+curl -LO https://github.com/git-ecosystem/git-credential-manager/releases/download/v${GCM_VERSION}/gcm-linux-x64-${GCM_VERSION}.deb 
+sudo dpkg -i gcm-linux-x64-${GCM_VERSION}.deb
 git-credential-manager configure
 
 
