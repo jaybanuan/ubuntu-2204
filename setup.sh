@@ -74,16 +74,16 @@ test -f "${CONFIG_FILE}" || {
     exit 1
 }
 
-yq -re ".${ENTRY_NAME}" "${CONFIG_FILE}" > /dev/null || {
+yq -re ".${ENTRY_NAME}" < "${CONFIG_FILE}" > /dev/null || {
     echo "The entry ${ENTRY_NAME} not found." >&2
     exit 1
 }
 
-GIT_USER_NAME="$(yq -re ".${ENTRY_NAME}.name" ${CONFIG_FILE})" || {
+GIT_USER_NAME="$(yq -re ".${ENTRY_NAME}.name" < "${CONFIG_FILE}")" || {
     GIT_USER_NAME=${ENTRY_NAME}
 }
 
-GIT_USER_EMAIL="$(yq -re ".${ENTRY_NAME}.email" ${CONFIG_FILE})" || {
+GIT_USER_EMAIL="$(yq -re ".${ENTRY_NAME}.email" < "${CONFIG_FILE}")" || {
     echo "The key 'email' not found in ${ENTRY_NAME}." >&2
     exit 1
 }
