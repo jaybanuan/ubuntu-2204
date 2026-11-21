@@ -100,7 +100,7 @@ chmod a+x ~/bin/git-user
 ##############################################################################
 # git-user dependencies
 
-pipx install yq
+sudo snap install yq
 
 
 ##############################################################################
@@ -218,19 +218,21 @@ curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.de
 sudo dpkg -i ./google-chrome-stable_current_amd64.deb
 
 # install Brasero
-sudo apt-get install -y brasero
+#sudo apt-get install -y brasero
 
 # install VLC
-sudo snap install vlc
+sudo apt-get install -y vlc
 
 # install GIMP
 sudo snap install gimp
 
 # install Slack
-sudo snap install slack
+#sudo snap install slack
+sudo apt-get install -y slack
 
 # install LibreOffice
-sudo snap install libreoffice
+#sudo snap install libreoffice
+sudo apt-get install -y libreoffice
 
 
 ##############################################################################
